@@ -595,74 +595,62 @@ select {
   gap: 25px;
 }
 
+
 .dashboard-card {
   padding: 30px;
-
   border-radius: 20px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #171a21,
-      #101217
-    );
+  background: linear-gradient(
+    145deg,
+    #171a21,
+    #101217
+  );
 
   border: 1px solid #292d36;
-
   transition: 0.3s ease;
 
-  box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard-card:hover {
   transform: translateY(-6px);
-
   border-color: rgba(255, 107, 53, 0.55);
 
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
 .card-icon {
   margin-bottom: 18px;
-
   font-size: 45px;
 }
 
 .dashboard-card h2 {
   margin-bottom: 10px;
+  color: #ffffff;
 }
 
 .dashboard-card p {
   min-height: 52px;
-
   color: #999ba4;
-
   line-height: 1.6;
 }
 
 .dashboard-card button {
   margin-top: 20px;
-
   padding: 11px 18px;
-
   border-radius: 9px;
 
   background: #ff6b35;
-
   color: #ffffff;
-
   border: none;
-
   cursor: pointer;
 }
 
 .dashboard-card button:hover {
   background: #ff8154;
-
   transform: translateY(-2px);
 }
+
 
 /* =========================================
    MENU
@@ -4719,4 +4707,1405 @@ select {
   border-color: rgba(255, 107, 53, 0.35);
   background: rgba(255, 255, 255, 0.03);
   transform: translateY(-1px);
+}
+
+/* Smart Canteen Footer Styling */
+.footer {
+  width: 100%;
+  padding: 20px 15px;
+  margin-top: 30px;
+  text-align: center;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-top: 2px solid #22c55e;
+  box-sizing: border-box;
+}
+
+.footer-brand {
+  color: #22c55e;
+  font-weight: 700;
+}
+
+.footer-tagline {
+  display: inline-block;
+  margin-left: 10px;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* Responsive Footer */
+@media (max-width: 600px) {
+  .footer {
+    padding: 16px 10px;
+    font-size: 12px;
+  }
+
+  .footer-tagline {
+    display: block;
+    margin: 8px 0 0;
+    font-size: 11px;
+  }
+}
+
+/* ===============================
+   SMART CANTEEN FOOTER
+   =============================== */
+
+.site-footer {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  margin-top: 40px;
+  padding: 22px 8%;
+  box-sizing: border-box;
+
+  background: #0f172a !important;
+  color: #cbd5e1 !important;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+
+  border-top: 2px solid #22c55e;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.site-footer span:first-child {
+  color: #e2e8f0 !important;
+}
+
+.site-footer span:last-child {
+  color: #22c55e !important;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .site-footer {
+    flex-direction: column;
+    justify-content: center !important;
+    text-align: center;
+    padding: 20px 12px;
+    font-size: 13px;
+  }
+
+  .site-footer span:last-child {
+    font-size: 11px;
+  }
+}
+
+
+/* FINAL LANDING PAGE FOOTER */
+.app > .site-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  width: 100%;
+  gap: 8px;
+  margin: 35px auto 0;
+  padding: 24px 15px;
+
+  background: transparent !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
+  border-radius: 0;
+
+  color: #737985 !important;
+  text-align: center;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  box-sizing: border-box;
+}
+
+.app > .site-footer span:first-child {
+  color: #737985 !important;
+  font-size: 12px;
+}
+
+.app > .site-footer span:last-child {
+  color: #ff8a50 !important;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+  .app > .site-footer {
+    margin-top: 25px;
+    padding: 20px 12px;
+  }
+}
+
+
+
+/* Main Page Description */
+.hero-text .description {
+  font-size: 17px;
+  line-height: 1.9;
+  max-width: 550px;
+  color: #a1a1aa;
+  font-weight: 400;
+  margin-top: 18px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .hero-text .description {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+}
+
+
+/* Student Dashboard Description */
+.dashboard-note {
+  font-size: 17px !important;
+  line-height: 1.9 !important;
+  max-width: 750px;
+  margin: 18px auto 30px !important;
+  color: #a1a1aa;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .dashboard-note {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    padding: 0 12px;
+  }
+}
+
+
+/* Fix empty space below student dashboard cards */
+
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+}
+
+.dashboard-cards {
+  margin-bottom: 35px;
+}
+
+.dashboard-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.dashboard-footer-bottom {
+  flex-shrink: 0;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding-bottom: 30px;
+  }
+
+  .dashboard-cards {
+    margin-bottom: 25px;
+  }
+}
+
+
+/* ========================================
+   PREMIUM ANIMATED WELCOME SHOWCASE
+======================================== */
+
+.welcome-showcase {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+  min-height: 285px;
+  box-sizing: border-box;
+  margin: 30px 0 45px;
+  padding: 38px 55px;
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse at 85% 45%,
+      rgba(255, 107, 53, 0.13),
+      transparent 42%
+    ),
+    linear-gradient(
+      115deg,
+      #171719 0%,
+      #1d1a19 55%,
+      #211813 100%
+    );
+
+  border: 1px solid rgba(255, 138, 80, 0.18);
+  border-radius: 22px;
+  text-align: left;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.16);
+}
+
+/* Subtle moving orange glow */
+
+.showcase-glow {
+  position: absolute;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  top: -130px;
+  left: 35%;
+  border-radius: 50%;
+  background: rgba(255, 107, 53, 0.08);
+  filter: blur(65px);
+  animation: showcaseGlow 7s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.showcase-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  max-width: 560px;
+}
+
+.showcase-label {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #ff956b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.showcase-content h2 {
+  margin: 0;
+  color: #f9fafb;
+  font-size: clamp(27px, 3vw, 39px);
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+  font-weight: 750;
+}
+
+.showcase-content h2 span {
+  color: #ff8757;
+  background: linear-gradient(
+    90deg,
+    #ffb08a,
+    #ff7546,
+    #ffab77
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.showcase-content p {
+  max-width: 440px;
+  margin: 16px 0 23px;
+  color: #a9a5a3;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.showcase-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: linear-gradient(110deg, #ff6b35, #ff8750);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 18px rgba(255, 107, 53, 0.15);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.showcase-button span {
+  font-size: 17px;
+  transition: transform 0.25s ease;
+}
+
+.showcase-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+}
+
+.showcase-button:hover span {
+  transform: translate(3px, -2px);
+}
+
+/* Decorative food illustration */
+
+.showcase-art {
+  position: relative;
+  flex: 0 0 270px;
+  height: 235px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.art-circle {
+  position: relative;
+  z-index: 1;
+  width: 155px;
+  height: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 160, 106, 0.19),
+    rgba(255, 107, 53, 0.035) 70%
+  );
+  border: 1px solid rgba(255, 138, 80, 0.22);
+  box-shadow:
+    0 0 55px rgba(255, 107, 53, 0.08),
+    inset 0 0 30px rgba(255, 107, 53, 0.04);
+  animation: plateFloat 5s ease-in-out infinite;
+}
+
+.art-plate {
+  width: 108px;
+  height: 108px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #34302e, #211e1d);
+  border: 5px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  font-size: 56px;
+}
+
+.art-orbit {
+  position: absolute;
+  width: 215px;
+  height: 145px;
+  border: 1px solid rgba(255, 138, 80, 0.18);
+  border-radius: 50%;
+  transform: rotate(-28deg);
+  pointer-events: none;
+}
+
+.orbit-two {
+  width: 240px;
+  height: 170px;
+  transform: rotate(40deg);
+  border-color: rgba(255, 138, 80, 0.09);
+}
+
+.floating-food {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 49px;
+  height: 49px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  background: rgba(38, 33, 30, 0.94);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-size: 25px;
+}
+
+.food-one {
+  top: 15px;
+  right: 25px;
+  animation: foodFloatOne 4.5s ease-in-out infinite;
+}
+
+.food-two {
+  bottom: 20px;
+  right: 30px;
+  animation: foodFloatTwo 5s ease-in-out infinite;
+}
+
+.food-three {
+  left: 0;
+  bottom: 35px;
+  animation: foodFloatOne 5.5s ease-in-out infinite reverse;
+}
+
+.floating-spark {
+  position: absolute;
+  color: #ff986c;
+  font-size: 25px;
+  animation: sparkPulse 3s ease-in-out infinite;
+}
+
+.spark-one {
+  top: 30px;
+  left: 32px;
+}
+
+.spark-two {
+  right: 5px;
+  top: 95px;
+  animation-delay: 1.2s;
+}
+
+/* Animation keyframes */
+
+@keyframes plateFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes foodFloatOne {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(3deg);
+  }
+}
+
+@keyframes foodFloatTwo {
+  0%, 100% {
+    transform: translateY(0) rotate(4deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-5deg);
+  }
+}
+
+@keyframes showcaseGlow {
+  from {
+    transform: translateX(-20px);
+    opacity: 0.55;
+  }
+  to {
+    transform: translateX(40px);
+    opacity: 1;
+  }
+}
+
+@keyframes sparkPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .welcome-showcase {
+    padding: 32px;
+    gap: 12px;
+  }
+
+  .showcase-art {
+    flex-basis: 220px;
+    transform: scale(0.9);
+  }
+
+  .showcase-content h2 {
+    font-size: 30px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .welcome-showcase {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    margin: 25px 0 30px;
+    padding: 28px 23px 12px;
+    border-radius: 17px;
+  }
+
+  .showcase-content {
+    width: 100%;
+  }
+
+  .showcase-content h2 {
+    font-size: 29px;
+  }
+
+  .showcase-content p {
+    font-size: 13px;
+  }
+
+  .showcase-art {
+    align-self: center;
+    flex: none;
+    width: 100%;
+    max-width: 280px;
+    height: 190px;
+    transform: scale(0.85);
+    transform-origin: top center;
+    margin-top: 5px;
+    margin-bottom: -12px;
+  }
+}
+
+/* Respect reduced-motion accessibility settings */
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-glow,
+  .art-circle,
+  .floating-food,
+  .floating-spark {
+    animation: none !important;
+  }
+
+  .showcase-button,
+  .showcase-button span {
+    transition: none !important;
+  }
+}
+
+
+/* =========================================
+   SMART CANTEEN - TOP WELCOME SECTION
+========================================= */
+
+.welcome-showcase {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  width: calc(100% - 64px);
+  max-width: 1400px;
+  min-height: 250px;
+  box-sizing: border-box;
+
+  margin: 26px auto 10px;
+  padding: 34px 48px;
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse at 85% 45%,
+      rgba(255, 107, 53, 0.15),
+      transparent 42%
+    ),
+    linear-gradient(
+      115deg,
+      #171719 0%,
+      #1d1a19 55%,
+      #211813 100%
+    );
+
+  border: 1px solid rgba(255, 138, 80, 0.2);
+  border-radius: 22px;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.16);
+}
+
+.showcase-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  max-width: 560px;
+}
+
+.showcase-label {
+  display: inline-block;
+  margin-bottom: 14px;
+
+  color: #ff956b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.showcase-content h2 {
+  margin: 0;
+  color: #f9fafb;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -1px;
+  font-weight: 750;
+}
+
+.showcase-content h2 span {
+  background: linear-gradient(
+    90deg,
+    #ffb08a,
+    #ff7546,
+    #ffab77
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.showcase-content p {
+  max-width: 440px;
+  margin: 16px 0 0;
+
+  color: #a9a5a3;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* Decorative food illustration */
+
+.showcase-art {
+  position: relative;
+  flex: 0 0 270px;
+  height: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.art-circle {
+  position: relative;
+  z-index: 1;
+
+  width: 155px;
+  height: 155px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 160, 106, 0.19),
+    rgba(255, 107, 53, 0.035) 70%
+  );
+
+  border: 1px solid rgba(255, 138, 80, 0.22);
+  box-shadow: 0 0 55px rgba(255, 107, 53, 0.08);
+
+  animation: plateFloat 5s ease-in-out infinite;
+}
+
+.art-plate {
+  width: 108px;
+  height: 108px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: linear-gradient(145deg, #34302e, #211e1d);
+  border: 5px solid rgba(255, 255, 255, 0.06);
+
+  font-size: 56px;
+}
+
+.art-orbit {
+  position: absolute;
+  width: 215px;
+  height: 145px;
+
+  border: 1px solid rgba(255, 138, 80, 0.18);
+  border-radius: 50%;
+  transform: rotate(-28deg);
+  pointer-events: none;
+}
+
+.orbit-two {
+  width: 240px;
+  height: 170px;
+  transform: rotate(40deg);
+  border-color: rgba(255, 138, 80, 0.09);
+}
+
+.floating-food {
+  position: absolute;
+  z-index: 2;
+
+  width: 49px;
+  height: 49px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  background: rgba(38, 33, 30, 0.94);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+  font-size: 25px;
+}
+
+.food-one {
+  top: 5px;
+  right: 25px;
+  animation: foodFloatOne 4.5s ease-in-out infinite;
+}
+
+.food-two {
+  bottom: 10px;
+  right: 30px;
+  animation: foodFloatTwo 5s ease-in-out infinite;
+}
+
+.food-three {
+  left: 0;
+  bottom: 25px;
+  animation: foodFloatOne 5.5s ease-in-out infinite reverse;
+}
+
+.floating-spark {
+  position: absolute;
+  color: #ff986c;
+  font-size: 25px;
+  animation: sparkPulse 3s ease-in-out infinite;
+}
+
+.spark-one {
+  top: 20px;
+  left: 32px;
+}
+
+.spark-two {
+  right: 5px;
+  top: 85px;
+  animation-delay: 1.2s;
+}
+
+/* Animation */
+
+@keyframes plateFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes foodFloatOne {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(3deg);
+  }
+}
+
+@keyframes foodFloatTwo {
+  0%, 100% {
+    transform: translateY(0) rotate(4deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-5deg);
+  }
+}
+
+@keyframes sparkPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* Dashboard spacing */
+
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 10px;
+  padding-bottom: 35px;
+}
+
+.dashboard-cards {
+  margin-bottom: 25px;
+}
+
+.dashboard-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.dashboard-footer-bottom {
+  flex-shrink: 0;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .welcome-showcase {
+    padding: 30px;
+    gap: 12px;
+  }
+
+  .showcase-art {
+    flex-basis: 220px;
+  }
+
+  .showcase-content h2 {
+    font-size: 30px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .welcome-showcase {
+    width: calc(100% - 32px);
+    min-height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+
+    margin: 18px auto 8px;
+    padding: 26px 22px 10px;
+    border-radius: 17px;
+  }
+
+  .showcase-content {
+    width: 100%;
+  }
+
+  .showcase-content h2 {
+    font-size: 29px;
+  }
+
+  .showcase-content p {
+    font-size: 13px;
+  }
+
+  .showcase-art {
+    align-self: center;
+    flex: none;
+    width: 100%;
+    max-width: 280px;
+    height: 180px;
+    margin-top: 5px;
+    margin-bottom: -10px;
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-glow,
+  .art-circle,
+  .floating-food,
+  .floating-spark {
+    animation: none !important;
+  }
+}
+
+
+/* ===== FULL-PAGE FLOATING FOOD BACKGROUND ===== */
+
+.dashboard {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #171717;
+}
+
+/* Keep all existing page content above the background */
+.dashboard > :not(.food-background) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Background layer */
+.food-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Floating food emojis */
+.bg-food {
+  position: absolute;
+  display: block;
+  opacity: 0.13;
+  font-size: 35px;
+  filter: saturate(0.85);
+  animation: backgroundFoodFloat 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Different positions and animation timings */
+.bg-food-1 {
+  top: 8%;
+  left: 5%;
+  animation-delay: -2s;
+}
+
+.bg-food-2 {
+  top: 18%;
+  right: 8%;
+  animation-delay: -6s;
+}
+
+.bg-food-3 {
+  top: 38%;
+  left: 12%;
+  animation-delay: -4s;
+}
+
+.bg-food-4 {
+  top: 52%;
+  right: 7%;
+  animation-delay: -8s;
+}
+
+.bg-food-5 {
+  top: 70%;
+  left: 6%;
+  animation-delay: -1s;
+}
+
+.bg-food-6 {
+  top: 82%;
+  right: 15%;
+  animation-delay: -5s;
+}
+
+.bg-food-7 {
+  top: 92%;
+  left: 42%;
+  animation-delay: -9s;
+}
+
+.bg-food-8 {
+  top: 62%;
+  left: 48%;
+  animation-delay: -3s;
+}
+
+/* Gentle floating and rotation */
+@keyframes backgroundFoodFloat {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-10deg);
+  }
+
+  25% {
+    transform: translate3d(12px, -18px, 0) rotate(5deg);
+  }
+
+  50% {
+    transform: translate3d(-8px, -30px, 0) rotate(12deg);
+  }
+
+  75% {
+    transform: translate3d(10px, -12px, 0) rotate(-5deg);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-10deg);
+  }
+}
+
+/* Smaller decorations on phones */
+@media (max-width: 600px) {
+  .bg-food {
+    font-size: 25px;
+    opacity: 0.10;
+  }
+
+  .bg-food-1,
+  .bg-food-3,
+  .bg-food-5 {
+    left: 2%;
+  }
+
+  .bg-food-2,
+  .bg-food-4,
+  .bg-food-6 {
+    right: 2%;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .bg-food {
+    animation: none;
+  }
+}
+
+
+/* Dashboard cards: dark grey, no blue */
+.dashboard-card {
+  background: linear-gradient(
+    145deg,
+    #242424,
+    #181818
+  ) !important;
+
+  border: 1px solid #3a3a3a;
+  color: #ffffff;
+}
+
+.dashboard-card h2 {
+  color: #ffffff;
+}
+
+.dashboard-card p {
+  color: #c0c0c0;
+}
+
+/* Grey hover border */
+.dashboard-card:hover {
+  border-color: #777777;
+}
+
+/* Orange buttons inside the cards */
+.dashboard-card button {
+  background: #ff6b35;
+  color: #ffffff;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.dashboard-card button:hover {
+  background: #ff8154;
+  transform: translateY(-2px);
+}
+
+
+/* Floating food icons for Admin Dashboard */
+
+.admin-dashboard {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.admin-dashboard::before {
+  content: "🍕";
+  position: absolute;
+  top: 12%;
+  left: 3%;
+  font-size: 32px;
+  opacity: 0.13;
+  pointer-events: none;
+  animation: adminFloatOne 7s ease-in-out infinite;
+  z-index: -1;
+}
+
+.admin-dashboard::after {
+  content: "🍔";
+  position: absolute;
+  top: 45%;
+  right: 4%;
+  font-size: 38px;
+  opacity: 0.12;
+  pointer-events: none;
+  animation: adminFloatTwo 9s ease-in-out infinite;
+  z-index: -1;
+}
+
+.admin-floating-food {
+  position: absolute;
+  font-size: 30px;
+  opacity: 0.13;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes adminFloatOne {
+  0%, 100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-22px) rotate(8deg);
+  }
+}
+
+@keyframes adminFloatTwo {
+  0%, 100% {
+    transform: translateY(0) rotate(8deg);
+  }
+  50% {
+    transform: translateY(20px) rotate(-8deg);
+  }
+}
+
+
+
+/* Floating food icons - Smart Canteen landing page */
+
+.app {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.floating-food {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.16;
+  font-size: 35px;
+  animation: floatingFood 7s ease-in-out infinite;
+}
+
+.food-one {
+  top: 19%;
+  left: 7%;
+  animation-delay: 0s;
+}
+
+.food-two {
+  top: 65%;
+  left: 4%;
+  animation-delay: 1s;
+  font-size: 30px;
+}
+
+.food-three {
+  top: 78%;
+  left: 36%;
+  animation-delay: 2s;
+}
+
+.food-four {
+  top: 23%;
+  right: 8%;
+  animation-delay: 1.5s;
+  font-size: 32px;
+}
+
+.food-five {
+  top: 72%;
+  right: 7%;
+  animation-delay: 0.5s;
+}
+
+.food-six {
+  top: 45%;
+  right: 39%;
+  animation-delay: 2.5s;
+  font-size: 29px;
+}
+
+@keyframes floatingFood {
+  0%, 100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(8deg);
+  }
+}
+
+
+
+/* REMOVE CIRCLES BEHIND BURGER */
+.welcome-showcase .showcase-art .art-circle,
+.welcome-showcase .showcase-art .art-plate {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+ 
+
+/* Move fries to the right side */
+.welcome-showcase .showcase-art .food-three {
+  position: absolute;
+  left: auto !important;
+  right: 0 !important;
+  top: 60%;
+  bottom: auto;
+  z-index: 3;
+  animation: foodFloatOne 5.5s ease-in-out infinite reverse;
+}
+
+
+/* =====================================
+   SMART CANTEEN - TODAY'S MENU PAGE
+===================================== */
+
+/* Main menu page */
+.menu-page,
+.menu-container,
+.food-menu-page {
+  color: #f9fafb;
+}
+
+/* Back to Dashboard */
+.menu-page button,
+.menu-container button,
+.food-menu-page button {
+  font-family: inherit;
+}
+
+/* Menu heading */
+.menu-page h1,
+.menu-container h1,
+.food-menu-page h1 {
+  color: #ffffff;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* Menu description */
+.menu-page p,
+.menu-container p,
+.food-menu-page p {
+  color: #b8b8b8;
+  line-height: 1.7;
+}
+
+/* Food item cards */
+.menu-page .menu-card,
+.menu-container .menu-card,
+.food-menu-page .menu-card,
+.menu-page .food-card,
+.menu-container .food-card,
+.food-menu-page .food-card {
+  background: linear-gradient(145deg, #242424, #181818);
+  border: 1px solid #383838;
+  border-radius: 16px;
+  padding: 22px;
+  color: #ffffff;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.menu-page .menu-card:hover,
+.menu-container .menu-card:hover,
+.food-menu-page .menu-card:hover,
+.menu-page .food-card:hover,
+.menu-container .food-card:hover,
+.food-menu-page .food-card:hover {
+  transform: translateY(-4px);
+  border-color: #ff6b35;
+}
+
+/* Food item names */
+.menu-page h2,
+.menu-container h2,
+.food-menu-page h2 {
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+/* Prices */
+.menu-page .price,
+.menu-container .price,
+.food-menu-page .price {
+  color: #ff8757;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* Add to Cart buttons */
+.menu-page .menu-card button,
+.menu-container .menu-card button,
+.food-menu-page .menu-card button,
+.menu-page .food-card button,
+.menu-container .food-card button,
+.food-menu-page .food-card button {
+  background: #ff6b35;
+  color: #ffffff;
+  border: none;
+  border-radius: 9px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.menu-page .menu-card button:hover,
+.menu-container .menu-card button:hover,
+.food-menu-page .menu-card button:hover,
+.menu-page .food-card button:hover,
+.menu-container .food-card button:hover,
+.food-menu-page .food-card button:hover {
+  background: #ff8154;
+  transform: translateY(-2px);
+}
+
+/* Out of stock */
+.menu-page .out-of-stock,
+.menu-container .out-of-stock,
+.food-menu-page .out-of-stock {
+  color: #ff7777;
+  font-weight: 700;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  .menu-page h1,
+  .menu-container h1,
+  .food-menu-page h1 {
+    font-size: 28px;
+  }
+
+  .menu-page .menu-card,
+  .menu-container .menu-card,
+  .food-menu-page .menu-card,
+  .menu-page .food-card,
+  .menu-container .food-card,
+  .food-menu-page .food-card {
+    padding: 16px;
+  }
 }

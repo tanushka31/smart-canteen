@@ -253,6 +253,14 @@ useEffect(() => {
 
   return (
     <div className="app">
+      
+<div className="floating-food food-one">🍕</div>
+<div className="floating-food food-two">🍟</div>
+<div className="floating-food food-three">🍩</div>
+<div className="floating-food food-four">🥤</div>
+<div className="floating-food food-five">🍔</div>
+
+
       <nav className="navbar">
 
         <div className="logo">

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 
 function Menu({
@@ -7,9 +8,10 @@ function Menu({
   onCheckout,
 }) {
   const [items, setItems] = useState([]);
-const [searchTerm, setSearchTerm] = useState("");
-const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
 
+  // Fetch food items from the backend
   useEffect(() => {
     const fetchInventory = async () => {
       try {
@@ -19,92 +21,162 @@ const [loading, setLoading] = useState(true);
 
         const data = await response.json();
 
-        if (response.ok) {
-  setItems(data);
-}
-
-setLoading(false);
+        if (response.ok && Array.isArray(data)) {
+          setItems(data);
+        }
       } catch (error) {
-        console.error(
-          "Error fetching menu:",
-          error
-        );
+        console.error("Error fetching menu:", error);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchInventory();
-    const interval = setInterval(() => {
-  fetchInventory();
-}, 10000);
 
-return () => clearInterval(interval);
+    const interval = setInterval(() => {
+      fetchInventory();
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
+  // Return the correct emoji based on the food name
   const getFoodIcon = (name) => {
+    const foodName = String(name || "")
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, " ");
+
+    if (foodName.includes("noodle")) return "🍜";
+    if (foodName.includes("pasta")) return "🍝";
+    if (foodName.includes("pizza")) return "🍕";
+    if (foodName.includes("burger")) return "🍔";
+    if (foodName.includes("sandwich")) return "🥪";
+
     if (
-      name === "Pizza" ||
-      name === "Pizzza"
+      foodName.includes("cold drink") ||
+      foodName.includes("soft drink")
     ) {
-      return "🍕";
-    }
-
-    if (name === "Burger") {
-      return "🍔";
-    }
-
-    if (name === "Sandwich") {
-      return "🥪";
-    }
-
-    if (name === "Cold Drink") {
       return "🥤";
     }
 
-    return "🍴";
+    if (foodName.includes("samosa")) return "🥟";
+    if (foodName.includes("fries")) return "🍟";
+    if (foodName.includes("dosa")) return "🥞";
+    if (foodName.includes("idli")) return "🍚";
+    if (foodName.includes("vada pav")) return "🍔";
+    if (foodName.includes("pav bhaji")) return "🍛";
+
+    if (
+      foodName.includes("biryani") ||
+      foodName.includes("rice")
+    ) {
+      return "🍚";
+    }
+
+    if (foodName.includes("cake")) return "🍰";
+    if (foodName.includes("ice cream")) return "🍨";
+
+    if (
+      foodName.includes("donut") ||
+      foodName.includes("doughnut")
+    ) {
+      return "🍩";
+    }
+
+    if (foodName.includes("coffee")) return "☕";
+
+    if (
+      foodName.includes("tea") ||
+      foodName.includes("chai")
+    ) {
+      return "🍵";
+    }
+
+    if (foodName.includes("juice")) return "🧃";
+
+    if (
+      foodName.includes("cookie") ||
+      foodName.includes("biscuit")
+    ) {
+      return "🍪";
+    }
+
+    if (foodName.includes("popcorn")) return "🍿";
+    if (foodName.includes("taco")) return "🌮";
+    if (foodName.includes("hot dog")) return "🌭";
+    if (foodName.includes("salad")) return "🥗";
+    if (foodName.includes("chocolate")) return "🍫";
+    if (foodName.includes("muffin")) return "🧁";
+    if (foodName.includes("pancake")) return "🥞";
+
+    if (
+      foodName.includes("milkshake") ||
+      foodName.includes("shake")
+    ) {
+      return "🥤";
+    }
+
+    if (foodName.includes("bread")) return "🍞";
+
+    if (
+      foodName.includes("egg") ||
+      foodName.includes("omelette") ||
+      foodName.includes("omelet")
+    ) {
+      return "🍳";
+    }
+
+    if (
+      foodName.includes("chicken") ||
+      foodName.includes("meat")
+    ) {
+      return "🍗";
+    }
+
+    if (
+      foodName.includes("soup") ||
+      foodName.includes("dal")
+    ) {
+      return "🍲";
+    }
+
+    if (foodName.includes("apple")) return "🍎";
+    if (foodName.includes("banana")) return "🍌";
+    if (foodName.includes("orange")) return "🍊";
+
+    return "🍽️";
   };
 
-  /* ===============================
-     FILTER MENU
-     =============================== */
-
+  // Filter menu items
   const filteredItems = items.filter((item) =>
-    item.name
+    String(item.name || "")
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
 
-  /* ===============================
-     ADD TO CART
-     =============================== */
-
+  // Add item to cart
   const addToCart = (item) => {
-    const token =
-      localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     if (!token) {
-      alert(
-        "Please login to add items to your cart."
-      );
-
+      alert("Please login to add items to your cart.");
       window.location.href = "/";
       return;
     }
 
+    if (!item.available || item.quantity <= 0) {
+      alert("This item is currently out of stock.");
+      return;
+    }
+
     const existingItem = cart.find(
-      (cartItem) =>
-        cartItem.name === item.name
+      (cartItem) => cartItem.name === item.name
     );
 
     if (existingItem) {
-      if (
-        existingItem.quantity >=
-        item.quantity
-      ) {
-        alert(
-          "You cannot add more than the available stock."
-        );
-
+      if (existingItem.quantity >= item.quantity) {
+        alert("You cannot add more than the available stock.");
         return;
       }
 
@@ -113,8 +185,7 @@ return () => clearInterval(interval);
           cartItem.name === item.name
             ? {
                 ...cartItem,
-                quantity:
-                  cartItem.quantity + 1,
+                quantity: cartItem.quantity + 1,
               }
             : cartItem
         )
@@ -131,28 +202,18 @@ return () => clearInterval(interval);
     }
   };
 
-  /* ===============================
-     INCREASE QUANTITY
-     =============================== */
-
-  const increaseQuantity = (
-    cartItem
-  ) => {
-    const token =
-      localStorage.getItem("token");
+  // Increase cart quantity
+  const increaseQuantity = (cartItem) => {
+    const token = localStorage.getItem("token");
 
     if (!token) {
-      alert(
-        "Please login to add items to your cart."
-      );
-
+      alert("Please login to add items to your cart.");
       window.location.href = "/";
       return;
     }
 
     const inventoryItem = items.find(
-      (item) =>
-        item.name === cartItem.name
+      (item) => item.name === cartItem.name
     );
 
     if (!inventoryItem) {
@@ -160,13 +221,10 @@ return () => clearInterval(interval);
     }
 
     if (
-      cartItem.quantity >=
-      inventoryItem.quantity
+      !inventoryItem.available ||
+      cartItem.quantity >= inventoryItem.quantity
     ) {
-      alert(
-        "You cannot add more than the available stock."
-      );
-
+      alert("You cannot add more than the available stock.");
       return;
     }
 
@@ -175,30 +233,21 @@ return () => clearInterval(interval);
         item.name === cartItem.name
           ? {
               ...item,
-              quantity:
-                item.quantity + 1,
+              quantity: item.quantity + 1,
             }
           : item
       )
     );
   };
 
-  /* ===============================
-     DECREASE QUANTITY
-     =============================== */
-
-  const decreaseQuantity = (
-    cartItem
-  ) => {
+  // Decrease cart quantity
+  const decreaseQuantity = (cartItem) => {
     if (cartItem.quantity <= 1) {
       setCart(
         cart.filter(
-          (item) =>
-            item.name !==
-            cartItem.name
+          (item) => item.name !== cartItem.name
         )
       );
-
       return;
     }
 
@@ -207,38 +256,28 @@ return () => clearInterval(interval);
         item.name === cartItem.name
           ? {
               ...item,
-              quantity:
-                item.quantity - 1,
+              quantity: item.quantity - 1,
             }
           : item
       )
     );
   };
 
-  /* ===============================
-     CART TOTALS
-     =============================== */
-
+  // Cart totals
   const totalItems = cart.reduce(
-    (total, item) =>
-      total + item.quantity,
+    (total, item) => total + item.quantity,
     0
   );
 
   const totalAmount = cart.reduce(
     (total, item) =>
-      total +
-      item.price * item.quantity,
+      total + item.price * item.quantity,
     0
   );
 
   return (
     <div className="menu-page">
-
-      {/* ===============================
-          BACK BUTTON
-          =============================== */}
-
+      {/* Back button */}
       <button
         className="back-dashboard-btn"
         onClick={onBack}
@@ -246,17 +285,14 @@ return () => clearInterval(interval);
         ← Back to Dashboard
       </button>
 
-      {/* ===============================
-          MENU HEADER
-          =============================== */}
-
+      {/* Menu header */}
       <div className="menu-header">
         <div>
           <p className="menu-eyebrow">
             SMART CANTEEN
           </p>
 
-          <h1>🍴 Today's Menu</h1>
+          <h1>🍽️ Today's Menu</h1>
 
           <p>
             Fresh picks. Quick ordering.
@@ -277,17 +313,12 @@ return () => clearInterval(interval);
           🛒{" "}
           <span>
             {totalItems} item
-            {totalItems !== 1
-              ? "s"
-              : ""}
+            {totalItems !== 1 ? "s" : ""}
           </span>
         </button>
       </div>
 
-      {/* ===============================
-          SEARCH
-          =============================== */}
-
+      {/* Search */}
       <div className="menu-search">
         <span className="menu-search-icon">
           🔍
@@ -298,18 +329,14 @@ return () => clearInterval(interval);
           placeholder="Search food..."
           value={searchTerm}
           onChange={(e) =>
-            setSearchTerm(
-              e.target.value
-            )
+            setSearchTerm(e.target.value)
           }
         />
 
         {searchTerm && (
           <button
             className="menu-search-clear"
-            onClick={() =>
-              setSearchTerm("")
-            }
+            onClick={() => setSearchTerm("")}
             type="button"
           >
             ×
@@ -317,55 +344,46 @@ return () => clearInterval(interval);
         )}
       </div>
 
-      {/* ===============================
-          FOOD MENU
-          =============================== */}
-
+      {/* Menu result information */}
       <div className="menu-result-info">
-  {searchTerm
-    ? `${filteredItems.length} item${
-        filteredItems.length !== 1 ? "s" : ""
-      } found`
-    : `${items.length} items available`}
-</div>
-
-<div className="menu-grid">
-
-  {loading ? (
-    <div className="menu-empty">
-      <div className="menu-empty-icon">
-        ⏳
+        {searchTerm
+          ? `${filteredItems.length} item${
+              filteredItems.length !== 1 ? "s" : ""
+            } found`
+          : `${items.length} items available`}
       </div>
 
-      <h2>
-        Loading menu...
-      </h2>
+      {/* Food cards */}
+      <div className="menu-grid">
+        {loading ? (
+          <div className="menu-empty">
+            <div className="menu-empty-icon">
+              ⏳
+            </div>
 
-      <p>
-        Getting today's food items ready.
-      </p>
-    </div>
-  ) : filteredItems.length === 0 ? (
+            <h2>Loading menu...</h2>
+
+            <p>
+              Getting today's food items ready.
+            </p>
+          </div>
+        ) : filteredItems.length === 0 ? (
           <div className="menu-empty">
             <div className="menu-empty-icon">
               🔎
             </div>
 
-            <h2>
-              No food found
-            </h2>
+            <h2>No food found</h2>
 
             <p>
-              Try searching for another
-              item.
+              Try searching for another item.
             </p>
           </div>
         ) : (
           filteredItems.map((item) => {
             const cartItem = cart.find(
               (cartItem) =>
-                cartItem.name ===
-                item.name
+                cartItem.name === item.name
             );
 
             return (
@@ -374,17 +392,13 @@ return () => clearInterval(interval);
                 key={item._id}
               >
                 <div className="food-image">
-                  {getFoodIcon(
-                    item.name
-                  )}
+                  {getFoodIcon(item.name)}
                 </div>
 
                 <div className="food-card-info">
                   <h2>{item.name}</h2>
 
-                  <strong>
-                    ₹{item.price}
-                  </strong>
+                  <strong>₹{item.price}</strong>
 
                   <p
                     className={
@@ -403,9 +417,7 @@ return () => clearInterval(interval);
                   <div className="food-quantity">
                     <button
                       onClick={() =>
-                        decreaseQuantity(
-                          cartItem
-                        )
+                        decreaseQuantity(cartItem)
                       }
                     >
                       −
@@ -417,9 +429,7 @@ return () => clearInterval(interval);
 
                     <button
                       onClick={() =>
-                        increaseQuantity(
-                          cartItem
-                        )
+                        increaseQuantity(cartItem)
                       }
                     >
                       +
@@ -432,12 +442,9 @@ return () => clearInterval(interval);
                       !item.available ||
                       item.quantity <= 0
                     }
-                    onClick={() =>
-                      addToCart(item)
-                    }
+                    onClick={() => addToCart(item)}
                   >
-                    {item.available &&
-                    item.quantity > 0
+                    {item.available && item.quantity > 0
                       ? "Add to Cart  +"
                       : "Out of Stock"}
                   </button>
@@ -448,10 +455,7 @@ return () => clearInterval(interval);
         )}
       </div>
 
-      {/* ===============================
-          CART
-          =============================== */}
-
+      {/* Cart summary */}
       {cart.length > 0 && (
         <div className="cart-summary">
           <div className="cart-summary-top">
@@ -460,9 +464,7 @@ return () => clearInterval(interval);
                 YOUR CART
               </p>
 
-              <h2>
-                🛒 Order Summary
-              </h2>
+              <h2>🛒 Order Summary</h2>
             </div>
 
             <span className="cart-count">
@@ -476,21 +478,16 @@ return () => clearInterval(interval);
               className="cart-item"
             >
               <div>
-                <strong>
-                  {item.name}
-                </strong>
+                <strong>{item.name}</strong>
 
                 <span>
-                  ₹{item.price} ×{" "}
-                  {item.quantity}
+                  ₹{item.price} × {item.quantity}
                 </span>
               </div>
 
               <div className="cart-item-right">
                 <strong>
-                  ₹
-                  {item.price *
-                    item.quantity}
+                  ₹{item.price * item.quantity}
                 </strong>
 
                 <button
@@ -499,8 +496,7 @@ return () => clearInterval(interval);
                     setCart(
                       cart.filter(
                         (cartItem) =>
-                          cartItem.name !==
-                          item.name
+                          cartItem.name !== item.name
                       )
                     );
                   }}
@@ -514,9 +510,7 @@ return () => clearInterval(interval);
           <div className="cart-total">
             <span>Total</span>
 
-            <strong>
-              ₹{totalAmount}
-            </strong>
+            <strong>₹{totalAmount}</strong>
           </div>
 
           <button

@@ -73,6 +73,12 @@ setLastUpdated(new Date());
 
   return (
     <div className="admin-dashboard">
+      
+<div className="admin-floating-food" style={{ top: "28%", left: "18%" }}>🥤</div>
+<div className="admin-floating-food" style={{ top: "65%", left: "5%" }}>🍟</div>
+<div className="admin-floating-food" style={{ top: "78%", right: "17%" }}>🍩</div>
+<div className="admin-floating-food" style={{ top: "20%", right: "22%" }}>🍜</div>
+
       <h1>🍴 Canteen Admin Dashboard</h1>
 
       <p className="admin-subtitle">

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 
 function AdminInventory({ onBack }) {
@@ -6,6 +7,115 @@ function AdminInventory({ onBack }) {
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
 
+  // Get the correct icon for every food item
+  const getFoodIcon = (name) => {
+    const foodName = String(name || "")
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, " ");
+
+    if (foodName.includes("noodle")) return "🍜";
+    if (foodName.includes("pasta")) return "🍝";
+    if (foodName.includes("pizza")) return "🍕";
+    if (foodName.includes("burger")) return "🍔";
+    if (foodName.includes("sandwich")) return "🥪";
+
+    if (
+      foodName.includes("cold drink") ||
+      foodName.includes("soft drink")
+    ) {
+      return "🥤";
+    }
+
+    if (foodName.includes("samosa")) return "🥟";
+    if (foodName.includes("fries")) return "🍟";
+    if (foodName.includes("dosa")) return "🥞";
+    if (foodName.includes("idli")) return "🍚";
+    if (foodName.includes("vada pav")) return "🍔";
+    if (foodName.includes("pav bhaji")) return "🍛";
+
+    if (
+      foodName.includes("biryani") ||
+      foodName.includes("rice")
+    ) {
+      return "🍚";
+    }
+
+    if (foodName.includes("cake")) return "🍰";
+    if (foodName.includes("ice cream")) return "🍨";
+
+    if (
+      foodName.includes("donut") ||
+      foodName.includes("doughnut")
+    ) {
+      return "🍩";
+    }
+
+    if (foodName.includes("coffee")) return "☕";
+
+    if (
+      foodName.includes("tea") ||
+      foodName.includes("chai")
+    ) {
+      return "🍵";
+    }
+
+    if (foodName.includes("juice")) return "🧃";
+
+    if (
+      foodName.includes("cookie") ||
+      foodName.includes("biscuit")
+    ) {
+      return "🍪";
+    }
+
+    if (foodName.includes("popcorn")) return "🍿";
+    if (foodName.includes("taco")) return "🌮";
+    if (foodName.includes("hot dog")) return "🌭";
+    if (foodName.includes("salad")) return "🥗";
+    if (foodName.includes("chocolate")) return "🍫";
+    if (foodName.includes("muffin")) return "🧁";
+    if (foodName.includes("pancake")) return "🥞";
+
+    if (
+      foodName.includes("milkshake") ||
+      foodName.includes("shake")
+    ) {
+      return "🥤";
+    }
+
+    if (foodName.includes("bread")) return "🍞";
+
+    if (
+      foodName.includes("egg") ||
+      foodName.includes("omelette") ||
+      foodName.includes("omelet")
+    ) {
+      return "🍳";
+    }
+
+    if (
+      foodName.includes("chicken") ||
+      foodName.includes("meat")
+    ) {
+      return "🍗";
+    }
+
+    if (
+      foodName.includes("soup") ||
+      foodName.includes("dal")
+    ) {
+      return "🍲";
+    }
+
+    if (foodName.includes("apple")) return "🍎";
+    if (foodName.includes("banana")) return "🍌";
+    if (foodName.includes("orange")) return "🍊";
+
+    return "🍽️";
+  };
+
+  // Fetch inventory from the backend
   const fetchInventory = async () => {
     try {
       const response = await fetch(
@@ -14,14 +124,11 @@ function AdminInventory({ onBack }) {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok && Array.isArray(data)) {
         setItems(data);
       }
     } catch (error) {
-      console.error(
-        "Error fetching inventory:",
-        error
-      );
+      console.error("Error fetching inventory:", error);
     }
   };
 
@@ -29,6 +136,7 @@ function AdminInventory({ onBack }) {
     fetchInventory();
   }, []);
 
+  // Update an inventory item
   const updateItem = async (item) => {
     try {
       const response = await fetch(
@@ -39,11 +147,10 @@ function AdminInventory({ onBack }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name: item.name,
+            name: item.name.trim(),
             quantity: Number(item.quantity),
             price: Number(item.price),
-            available:
-              Number(item.quantity) > 0,
+            available: Number(item.quantity) > 0,
           }),
         }
       );
@@ -51,26 +158,24 @@ function AdminInventory({ onBack }) {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(
-          data.message ||
-            "Failed to update item"
-        );
+        alert(data.message || "Failed to update item");
         return;
       }
 
-      alert("Item updated successfully! ✅");
-
+      alert("Inventory item updated successfully! ✅");
       fetchInventory();
     } catch (error) {
-      console.error(error);
-
-      alert(
-        "Cannot connect to server."
-      );
+      console.error("Error updating item:", error);
+      alert("Cannot connect to server.");
     }
   };
 
+  // Delete an inventory item
   const deleteItem = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this food item?")) {
+      return;
+    }
+
     try {
       const response = await fetch(
         `http://localhost:5000/api/inventory/${id}`,
@@ -82,29 +187,28 @@ function AdminInventory({ onBack }) {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(
-          data.message ||
-            "Failed to delete item"
-        );
+        alert(data.message || "Failed to delete item");
         return;
       }
 
-      alert(
-        "Inventory item deleted! 🗑️"
-      );
-
+      alert("Inventory item deleted! 🗑️");
       fetchInventory();
     } catch (error) {
-      console.error(error);
-
-      alert(
-        "Cannot connect to server."
-      );
+      console.error("Error deleting item:", error);
+      alert("Cannot connect to server.");
     }
   };
 
+  // Add a new inventory item
   const addItem = async (e) => {
     e.preventDefault();
+
+    const trimmedName = name.trim();
+
+    if (!trimmedName) {
+      alert("Please enter a food name.");
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -115,7 +219,7 @@ function AdminInventory({ onBack }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name,
+            name: trimmedName,
             quantity: Number(quantity),
             price: Number(price),
           }),
@@ -125,16 +229,11 @@ function AdminInventory({ onBack }) {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(
-          data.message ||
-            "Failed to add item"
-        );
+        alert(data.message || "Failed to add item");
         return;
       }
 
-      alert(
-        "Inventory item added! 🍔"
-      );
+      alert(`${getFoodIcon(trimmedName)} ${trimmedName} added successfully!`);
 
       setName("");
       setQuantity("");
@@ -142,27 +241,22 @@ function AdminInventory({ onBack }) {
 
       fetchInventory();
     } catch (error) {
-      console.error(error);
-
-      alert(
-        "Cannot connect to server."
-      );
+      console.error("Error adding item:", error);
+      alert("Cannot connect to server.");
     }
   };
 
   return (
     <div className="admin-inventory">
+      {/* Inventory header */}
       <div className="inventory-top">
         <div>
-          <p className="admin-eyebrow">
-            ADMIN PANEL
-          </p>
+          <p className="admin-eyebrow">ADMIN PANEL</p>
 
           <h1>📦 Inventory Management</h1>
 
           <p>
-            Manage food items, prices,
-            stock and availability.
+            Manage food items, prices, stock and availability.
           </p>
         </div>
 
@@ -171,10 +265,8 @@ function AdminInventory({ onBack }) {
         </button>
       </div>
 
-      <form
-        className="inventory-form"
-        onSubmit={addItem}
-      >
+      {/* Add food form */}
+      <form className="inventory-form" onSubmit={addItem}>
         <h2>➕ Add Food Item</h2>
 
         <div className="inventory-input-grid">
@@ -182,9 +274,7 @@ function AdminInventory({ onBack }) {
             type="text"
             placeholder="Food name"
             value={name}
-            onChange={(e) =>
-              setName(e.target.value)
-            }
+            onChange={(e) => setName(e.target.value)}
             required
           />
 
@@ -193,9 +283,7 @@ function AdminInventory({ onBack }) {
             placeholder="Quantity"
             min="0"
             value={quantity}
-            onChange={(e) =>
-              setQuantity(e.target.value)
-            }
+            onChange={(e) => setQuantity(e.target.value)}
             required
           />
 
@@ -204,71 +292,58 @@ function AdminInventory({ onBack }) {
             placeholder="Price ₹"
             min="0"
             value={price}
-            onChange={(e) =>
-              setPrice(e.target.value)
-            }
+            onChange={(e) => setPrice(e.target.value)}
             required
           />
         </div>
+
+        {name.trim() && (
+          <p className="inventory-icon-preview">
+            Food icon preview: {getFoodIcon(name)} {name.trim()}
+          </p>
+        )}
 
         <button type="submit">
           Add Item
         </button>
       </form>
 
+      {/* Inventory heading */}
       <div className="inventory-heading">
         <div>
           <h2>Current Inventory</h2>
+
           <p>
             {items.length} food item
-            {items.length !== 1
-              ? "s"
-              : ""}{" "}
-            in inventory
+            {items.length !== 1 ? "s" : ""} in inventory
           </p>
         </div>
       </div>
 
+      {/* Inventory items */}
       {items.length === 0 ? (
         <div className="empty-inventory">
           <div>📦</div>
           <h3>No inventory items</h3>
-          <p>
-            Add your first food item
-            above.
-          </p>
+          <p>Add your first food item above.</p>
         </div>
       ) : (
         <div className="inventory-grid">
           {items.map((item) => (
-            <div
-              className="inventory-card"
-              key={item._id}
-            >
+            <div className="inventory-card" key={item._id}>
               <div className="inventory-card-top">
                 <div className="inventory-food-icon">
-                  {item.name === "Pizza" ||
-                  item.name === "Pizzza"
-                    ? "🍕"
-                    : item.name === "Burger"
-                    ? "🍔"
-                    : item.name ===
-                      "Sandwich"
-                    ? "🥪"
-                    : item.name ===
-                      "Cold Drink"
-                    ? "🥤"
-                    : "🍴"}
+                  {getFoodIcon(item.name)}
                 </div>
 
                 <span
                   className={
-                    item.quantity > 0
+                    Number(item.quantity) > 0
                       ? "stock-badge available"
                       : "stock-badge empty"
                   }
                 >
-                  {item.quantity > 0
+                  {Number(item.quantity) > 0
                     ? "● Available"
                     : "● Out of Stock"}
                 </span>
@@ -279,13 +354,10 @@ function AdminInventory({ onBack }) {
                 type="text"
                 value={item.name}
                 onChange={(e) => {
-                  setItems(
-                    items.map((i) =>
+                  setItems((previousItems) =>
+                    previousItems.map((i) =>
                       i._id === item._id
-                        ? {
-                            ...i,
-                            name: e.target.value,
-                          }
+                        ? { ...i, name: e.target.value }
                         : i
                     )
                   );
@@ -301,21 +373,15 @@ function AdminInventory({ onBack }) {
                     min="0"
                     value={item.quantity}
                     onChange={(e) => {
-                      setItems(
-                        items.map((i) =>
+                      const newQuantity = Number(e.target.value);
+
+                      setItems((previousItems) =>
+                        previousItems.map((i) =>
                           i._id === item._id
                             ? {
                                 ...i,
-                                quantity:
-                                  Number(
-                                    e.target
-                                      .value
-                                  ),
-                                available:
-                                  Number(
-                                    e.target
-                                      .value
-                                  ) > 0,
+                                quantity: newQuantity,
+                                available: newQuantity > 0,
                               }
                             : i
                         )
@@ -325,23 +391,19 @@ function AdminInventory({ onBack }) {
                 </div>
 
                 <div>
-                  <label>Price</label>
+                  <label>Price ₹</label>
 
                   <input
                     type="number"
                     min="0"
                     value={item.price}
                     onChange={(e) => {
-                      setItems(
-                        items.map((i) =>
+                      setItems((previousItems) =>
+                        previousItems.map((i) =>
                           i._id === item._id
                             ? {
                                 ...i,
-                                price:
-                                  Number(
-                                    e.target
-                                      .value
-                                  ),
+                                price: Number(e.target.value),
                               }
                             : i
                         )
@@ -353,18 +415,16 @@ function AdminInventory({ onBack }) {
 
               <div className="inventory-actions">
                 <button
-                  onClick={() =>
-                    updateItem(item)
-                  }
+                  type="button"
+                  onClick={() => updateItem(item)}
                 >
                   Save Changes
                 </button>
 
                 <button
+                  type="button"
                   className="delete-btn"
-                  onClick={() =>
-                    deleteItem(item._id)
-                  }
+                  onClick={() => deleteItem(item._id)}
                 >
                   Delete
                 </button>
